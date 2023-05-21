@@ -1,0 +1,77 @@
+#+TITLE: Cairo
+
+* project configuration
+** poetry
+1. init
+#+begin_src shell
+  poetry init  
+#+end_src
+
+2. use inline virtualenv
+#+begin_src shell
+  poetry config virtualenvs.in-project true
+  poetry env use python
+#+end_src
+
+#+RESULTS:
+: Using virtualenv: /Users/liuyuan/workspace/blockchain/zkvms_pg/cairo/.venv
+
+3. add related package
+#+begin_src shell
+  poetry add cairo-lang
+#+end_src
+
+* test the env
+** compile
+#+begin_src shell
+  cairo-compile src/test.cairo --output compiled/test_compiled.json
+#+end_src
+
+#+RESULTS:
+
+** run 
+#+begin_src shell
+cairo-run --program=compiled/test_compiled.json --print_output --print_info --relocate_prints  
+#+end_src
+
+
+#+begin_example
+Number of steps: 4 (originally, 4)
+Used memory cells: 11
+Register values after execution:
+pc = 12
+ap = 12
+fp = 12
+#+end_example
+
+** submit
+#+begin_src shell
+ cairo-sharp submit --source src/sharp_test.cairo \
+    --program_input src/input.json  
+#+end_src
+
+#+begin_example
+Compiling...
+Running...
+Submitting to SHARP...
+Job sent.
+Job key: aadd57a4-0a44-439b-9e34-a2a9d6157a97
+Fact: 0xe6168c0a865aa80d724ad05627fa65fbcfe4b1d66a586e9f348f461b076072c4
+#+end_example
+
+
+** check
+#+begin_src shell
+cairo-sharp status aadd57a4-0a44-439b-9e34-a2a9d6157a97  
+#+end_src
+
+until IN_PROGRESS -> PROCESSED
+
+** verify
+#+begin_src shell
+cairo-sharp is_verified \
+    0xe6168c0a865aa80d724ad05627fa65fbcfe4b1d66a586e9f348f461b076072c4 \
+    --node_url=https://ethereum-goerli-rpc-korea.allthatnode.com
+#+end_src
+
+We got "True"
