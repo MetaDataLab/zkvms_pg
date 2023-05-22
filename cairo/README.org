@@ -75,3 +75,8 @@ cairo-sharp is_verified \
 #+end_src
 
 We got "True"
+
+** reference
+https://www.certik.com/zh-CN/resources/blog/fQfJVKgF4GAQdpIXgwrOb-an-introduction-to-the-cairo-programming-language
+
+[[./res/starknet_arch.png]]
