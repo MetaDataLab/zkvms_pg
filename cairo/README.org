@@ -1,6 +1,6 @@
 #+TITLE: Cairo
 
-* project configuration
+* Project configuration
 ** poetry
 1. init
 #+begin_src shell
@@ -10,7 +10,7 @@
 2. use inline virtualenv
 #+begin_src shell
   poetry config virtualenvs.in-project true
-  poetry env use python
+  poetry env use python3.10
 #+end_src
 
 #+RESULTS:
@@ -21,7 +21,7 @@
   poetry add cairo-lang
 #+end_src
 
-* test the env
+* Test the env
 ** compile
 #+begin_src shell
   cairo-compile src/test.cairo --output compiled/test_compiled.json
@@ -80,3 +80,6 @@ We got "True"
 https://www.certik.com/zh-CN/resources/blog/fQfJVKgF4GAQdpIXgwrOb-an-introduction-to-the-cairo-programming-language
 
 [[./res/starknet_arch.png]]
+
+* The simple example
+

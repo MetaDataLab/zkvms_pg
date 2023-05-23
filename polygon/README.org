@@ -1,0 +1,27 @@
+#+TITLE: Polygon Hermez
+
+* Project prepare
+** Use docker
+#+begin_src shell
+  docker pull docker.io/hermeznetwork/zkevm-prover:v1.1.2-RC2-fork.4
+  docker run -it docker.io/hermeznetwork/zkprover-local:v1.1.2-RC2-fork.4 /bin/bash
+#+end_src
+
+** run test
+#+begin_src shell
+  # in dir /app
+  cp config/config_prover.json config/config.json
+  sed -i 's/true/false/g' config/config.json
+
+#+end_src
+
+修改 config.json：
+- "runFileGen**Proof" to "true"
+- "inputFile" to "testvectors/input_executor.json"
+
+
+** reference
+
+https://docs.hermez.io/zkEVM/zkProver/Overview/zkProver-Overview/
+
+[[./res/polygon-zk-prover.png]]
